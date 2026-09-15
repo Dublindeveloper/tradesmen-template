@@ -1,0 +1,24 @@
+{
+  "name": "tradesmen-website-engine",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Ultra-fast, mobile-first, high-converting website platform for Irish & UK tradesmen (Electricians, Plumbers, Builders)",
+  "scripts": {
+    "dev": "astro dev",
+    "dev:electrician": "TRADE_CONFIG=electrician astro dev",
+    "dev:plumber": "TRADE_CONFIG=plumber astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "build:electrician": "TRADE_CONFIG=electrician ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "build:plumber": "TRADE_CONFIG=plumber ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource/inter": "^5.2.5",
+    "@fontsource/montserrat": "^5.2.5",
+    "astro": "^5.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

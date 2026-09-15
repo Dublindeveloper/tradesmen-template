@@ -1,0 +1,291 @@
+---
+import siteConfig from '../../site.config';
+---
+
+<section class="section quote-section" id="quote">
+  <div class="container">
+    <div class="quote-wrapper">
+      <div class="quote-info">
+        <span class="badge badge-gold">Transparent Pricing</span>
+        <h2 class="quote-heading">Need an Electrical Job Estimated?</h2>
+        <p class="quote-subtext">
+          Whether you need an EV charger grant installation, a full fuse board replacement, or safety certification, we provide clear, itemized quotes with no surprises.
+        </p>
+
+        <div class="info-boxes">
+          <div class="info-box">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <strong>100% Guaranteed Workmanship</strong>
+              <p>Certified Safe Electric completion certificates provided on every eligible job.</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            </div>
+            <div>
+              <strong>Fast WhatsApp Photo Triage</strong>
+              <p>Snap a photo of your fuse board or room and send directly on WhatsApp for an immediate price guide.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="call-prompt">
+          <span>Prefer to speak with an electrician right now?</span>
+          <a href={`tel:${siteConfig.phone}`} class="call-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            {siteConfig.phoneDisplay}
+          </a>
+        </div>
+      </div>
+
+      <!-- Form Container -->
+      <div class="quote-form-card card">
+        <h3 class="form-title">Detailed Job Enquiry</h3>
+        <p class="form-subtitle">Fill in details below for a prompt callback and quotation.</p>
+
+        <form id="detailed-quote-form" onsubmit="event.preventDefault(); handleDetailedSubmit();">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="client-name">Your Full Name</label>
+              <input type="text" id="client-name" placeholder="e.g. John Murphy" required />
+            </div>
+            <div class="form-field">
+              <label for="client-phone">Phone Number</label>
+              <input type="tel" id="client-phone" placeholder="e.g. 087 123 4567" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="client-email">Email Address</label>
+              <input type="email" id="client-email" placeholder="e.g. john@gmail.com" required />
+            </div>
+            <div class="form-field">
+              <label for="client-eircode">Area / Eircode</label>
+              <input type="text" id="client-eircode" placeholder="e.g. Castleknock, D15" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="job-type">Service Required</label>
+            <select id="job-type" required>
+              <option value="" disabled selected>Choose service category...</option>
+              {siteConfig.services.map((s) => (
+                <option value={s.title}>{s.title}</option>
+              ))}
+              <option value="Emergency Fault / Power Outage">Emergency Power Outage / Tripped Breaker</option>
+              <option value="Other Electrical Repair">Other Electrical Work</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="job-urgency">How urgent is this job?</label>
+            <select id="job-urgency" required>
+              <option value="Emergency (Immediate / Today)">Emergency (Immediate / Today)</option>
+              <option value="This Week">Within the next few days</option>
+              <option value="Planning for next 2-4 weeks">Planning for next 2-4 weeks</option>
+              <option value="Just looking for initial price guide">Just looking for a price guide</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="job-details">Brief description of the job</label>
+            <textarea id="job-details" rows="3" placeholder="Tell us about the issue, number of sockets, consumer unit age, or EV charger model..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-accent btn-submit">
+            <span>Submit Quotation Request</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ whatsappNumber: siteConfig.whatsappNumber, businessName: siteConfig.businessName }}>
+  function handleDetailedSubmit() {
+    const name = document.getElementById('client-name').value;
+    const phone = document.getElementById('client-phone').value;
+    const email = document.getElementById('client-email').value;
+    const area = document.getElementById('client-eircode').value;
+    const service = document.getElementById('job-type').value;
+    const urgency = document.getElementById('job-urgency').value;
+    const details = document.getElementById('job-details').value;
+
+    const message = `Hello ${businessName},\n*Job Quote Request*\n- Name: ${name}\n- Phone: ${phone}\n- Email: ${email}\n- Location: ${area}\n- Service: ${service}\n- Urgency: ${urgency}\n- Details: ${details || 'None provided'}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+<style>
+  .quote-section {
+    background: #FFFFFF;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .quote-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .quote-wrapper {
+      grid-template-columns: 1fr 1.15fr;
+      gap: 4rem;
+    }
+  }
+
+  .quote-heading {
+    font-size: 2.25rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .quote-subtext {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .info-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    background: #EFF6FF;
+    color: #1E40AF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-box strong {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--color-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .info-box p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  .call-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .call-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .call-link:hover {
+    color: var(--color-accent);
+  }
+
+  /* Form Card */
+  .quote-form-card {
+    padding: 2.25rem;
+    border-radius: 16px;
+    background: #F8FAFC;
+  }
+
+  .form-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.75rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    background: #FFFFFF;
+    color: var(--color-text-dark);
+    outline: none;
+    transition: border 0.15s ease;
+  }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--color-accent);
+  }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.95rem;
+  }
+</style>

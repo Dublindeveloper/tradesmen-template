@@ -1,0 +1,320 @@
+---
+import siteConfig from '../../site.config';
+const { calculator } = siteConfig;
+---
+
+<section class="section calculator-section" id="price-calculator">
+  <div class="container">
+    <div class="calc-card card">
+      <div class="calc-header">
+        <span class="badge badge-gold">{calculator.badgeText}</span>
+        <h2 class="calc-title">{calculator.title}</h2>
+        <p class="calc-subtitle">{calculator.subtitle}</p>
+      </div>
+
+      <div class="calc-body">
+        <!-- Interactive Controls -->
+        <div class="calc-controls">
+          {calculator.groups.map((group, gIdx) => (
+            <div class="calc-group">
+              <label class="calc-label">{group.label}</label>
+              <div class="calc-options" id={`calc-group-${gIdx}`}>
+                {group.options.map((opt, oIdx) => (
+                  <button
+                    type="button"
+                    class={`calc-opt-btn ${oIdx === 0 ? 'active' : ''}`}
+                    data-group={gIdx}
+                    data-cost={opt.cost}
+                    data-name={opt.name}
+                  >
+                    <strong>{opt.title}</strong>
+                    <span>{opt.subtitle}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Real-Time Price Summary Box -->
+        <div class="calc-summary-box">
+          <h3 class="summary-title">Estimate Summary</h3>
+          
+          <div class="summary-line">
+            <span>Hardware & Certified Installation:</span>
+            <strong id="calc-subtotal">€0</strong>
+          </div>
+
+          <div class="summary-line grant-line">
+            <span>{calculator.grantLabel}:</span>
+            <strong class="grant-deduction">-€{calculator.grantAmount}</strong>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <div>
+              <span class="total-label">Your Net Out-of-Pocket Cost:</span>
+              <span class="total-vat-note">Includes certified installation, testing & cert</span>
+            </div>
+            <div class="total-amount" id="calc-net-total">
+              €0
+            </div>
+          </div>
+
+          <div class="summary-actions">
+            <button type="button" id="book-calc-btn" class="btn btn-accent btn-calc-book">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>Confirm Quote on WhatsApp</span>
+            </button>
+            <p class="summary-note">{calculator.summaryNote}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ whatsappNumber: siteConfig.whatsappNumber, businessName: siteConfig.businessName, grant: calculator.grantAmount, calcTitle: calculator.title }}>
+  (function() {
+    const selectedCosts = {};
+    const selectedNames = {};
+
+    function updateTotals() {
+      let subtotal = 0;
+      Object.values(selectedCosts).forEach(c => subtotal += c);
+      const net = Math.max(0, subtotal - grant);
+
+      document.getElementById('calc-subtotal').textContent = `€${subtotal}`;
+      document.getElementById('calc-net-total').textContent = `€${net}`;
+    }
+
+    const optionButtons = document.querySelectorAll('.calc-opt-btn');
+    optionButtons.forEach(btn => {
+      const gIdx = btn.dataset.group;
+      if (btn.classList.contains('active')) {
+        selectedCosts[gIdx] = parseInt(btn.dataset.cost, 10);
+        selectedNames[gIdx] = btn.dataset.name;
+      }
+
+      btn.addEventListener('click', () => {
+        const groupContainer = document.getElementById(`calc-group-${gIdx}`);
+        groupContainer.querySelectorAll('.calc-opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        selectedCosts[gIdx] = parseInt(btn.dataset.cost, 10);
+        selectedNames[gIdx] = btn.dataset.name;
+        updateTotals();
+      });
+    });
+
+    updateTotals();
+
+    const bookBtn = document.getElementById('book-calc-btn');
+    if (bookBtn) {
+      bookBtn.addEventListener('click', () => {
+        let subtotal = 0;
+        Object.values(selectedCosts).forEach(c => subtotal += c);
+        const net = Math.max(0, subtotal - grant);
+
+        let details = Object.values(selectedNames).map(n => `- ${n}`).join('\n');
+        const msg = `Hello ${businessName},\nI calculated a price quote for ${calcTitle}:\n${details}\n- Estimated Net Cost: €${net} (after €${grant} grant)\nCould we book a survey or installation date?`;
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+    }
+  })();
+</script>
+
+<style>
+  .calculator-section {
+    background: #0F1D36;
+    color: #FFFFFF;
+    position: relative;
+  }
+
+  .calc-card {
+    background: #172A4F;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  }
+
+  .calc-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 3rem;
+  }
+
+  .calc-title {
+    color: #FFFFFF;
+    font-size: 2.25rem;
+    margin: 0.75rem 0;
+  }
+
+  .calc-subtitle {
+    color: #CBD5E1;
+    font-size: 1.05rem;
+  }
+
+  .calc-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 960px) {
+    .calc-body {
+      grid-template-columns: 1.35fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .calc-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .calc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .calc-label {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #F1F5F9;
+  }
+
+  .calc-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 550px) {
+    .calc-options {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .calc-opt-btn {
+    background: #0F1D36;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 1rem 0.75rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .calc-opt-btn strong {
+    font-size: 0.875rem;
+    color: #FFFFFF;
+  }
+
+  .calc-opt-btn span {
+    font-size: 0.75rem;
+    color: #94A3B8;
+  }
+
+  .calc-opt-btn:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .calc-opt-btn.active {
+    border-color: var(--color-accent);
+    background: rgba(245, 158, 11, 0.12);
+  }
+
+  .calc-opt-btn.active strong {
+    color: var(--color-accent);
+  }
+
+  /* Summary Box */
+  .calc-summary-box {
+    background: #0F1D36;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .summary-title {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9375rem;
+    color: #CBD5E1;
+  }
+
+  .grant-line {
+    color: #34D399;
+  }
+
+  .grant-deduction {
+    font-size: 1.1rem;
+  }
+
+  .summary-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+  }
+
+  .summary-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .total-label {
+    display: block;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #FFFFFF;
+  }
+
+  .total-vat-note {
+    display: block;
+    font-size: 0.75rem;
+    color: #94A3B8;
+  }
+
+  .total-amount {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+  }
+
+  .btn-calc-book {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .summary-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    margin-top: 0.5rem;
+  }
+</style>

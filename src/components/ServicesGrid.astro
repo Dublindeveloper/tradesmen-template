@@ -1,0 +1,193 @@
+---
+import siteConfig from '../../site.config';
+---
+
+<section class="section services-section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">Professional Electrical Services</span>
+      <h2 class="section-title">Certified Domestic & Commercial Solutions</h2>
+      <p class="section-subtitle">
+        Every installation and repair is carried out by registered electricians in full accordance with national wiring rules (I.S. 10101) and backed by full warranty.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      {siteConfig.services.map((service) => (
+        <div class="service-card card">
+          {service.popular && <span class="popular-tag">Most Requested</span>}
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-desc">{service.shortDesc}</p>
+
+          {service.priceGuide && (
+            <div class="price-guide-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+              <span>{service.priceGuide}</span>
+            </div>
+          )}
+
+          <ul class="service-features">
+            {service.features.map((feature) => (
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="service-action">
+            <a
+              href={`https://wa.me/${siteConfig.whatsappNumber}?text=Hi%20${encodeURIComponent(siteConfig.businessName)},%20I'm%20enquiring%20about%20${encodeURIComponent(service.title)}.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline btn-service"
+            >
+              <span>Book / Enquire</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    background: var(--color-bg-light);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin: 0.75rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem 1.75rem;
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+  }
+
+  .popular-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #FEF3C7;
+    color: #92400E;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+  }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: #EFF6FF;
+    color: #1E40AF;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+
+  .service-desc {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .price-guide-box {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #065F46;
+    background: #ECFDF5;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .service-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #334155;
+  }
+
+  .service-features svg {
+    color: #10B981;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  .btn-service {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+  }
+</style>

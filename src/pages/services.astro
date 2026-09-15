@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import QuoteEstimator from '../components/QuoteEstimator.astro';
+---
+
+<BaseLayout title={`Electrical Services Dublin | ${siteConfig.businessName}`}>
+  <div class="page-header">
+    <div class="container">
+      <span class="badge badge-gold">Certified Workmanship</span>
+      <h1 class="page-title">Our Electrical Services</h1>
+      <p class="page-lead">
+        Safe Electric certified solutions for residential homeowners, landlords, commercial premises, and letting agents across Dublin.
+      </p>
+    </div>
+  </div>
+
+  <TrustBadges />
+  <ServicesGrid />
+  <QuoteEstimator />
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #0F1D36 0%, #172A4F 100%);
+    color: #FFFFFF;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #FFFFFF;
+    font-size: 2.5rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .page-lead {
+    color: #CBD5E1;
+    font-size: 1.125rem;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+</style>

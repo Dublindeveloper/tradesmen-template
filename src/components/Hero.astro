@@ -1,0 +1,397 @@
+---
+import siteConfig from '../../site.config';
+---
+
+<section class="hero-section">
+  <!-- Background Image with Overlay -->
+  <div class="hero-bg-media">
+    <img src={siteConfig.heroImage} alt={`${siteConfig.businessName} Trade Van & Workmanship`} class="hero-bg-img" />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-container">
+    <div class="hero-content">
+      <!-- Live Duty Indicator -->
+      <div class="duty-pill">
+        <span class="pulse-green"></span>
+        <span>{siteConfig.dutyPillText}</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title">{siteConfig.heroHeadline}</h1>
+      <p class="hero-desc">{siteConfig.heroSubheadline}</p>
+
+      <!-- Key Guarantees Badges -->
+      <div class="hero-badges-strip">
+        <div class="badge-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <div>
+            <strong>{siteConfig.certifications[0]}</strong>
+            <span>Certificates on every job</span>
+          </div>
+        </div>
+
+        <div class="badge-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <div>
+            <strong>{siteConfig.publicLiabilityInsurance}</strong>
+            <span>Peace of mind guarantee</span>
+          </div>
+        </div>
+
+        <div class="badge-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <div>
+            <strong>45-Min Emergency Arrival</strong>
+            <span>24/7 Dublin response</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a href={`tel:${siteConfig.phone}`} class="btn btn-call-hero">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>Emergency Call: {siteConfig.phoneDisplay}</span>
+        </a>
+
+        <a
+          href={`https://wa.me/${siteConfig.whatsappNumber}?text=Hi%20${encodeURIComponent(siteConfig.businessName)},%20I'd%20like%20to%20send%20a%20photo%20for%20a%20quote.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-whatsapp-hero"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>Send Photo for 10-Min Quote</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Glassmorphic Fast Quote Box -->
+    <div class="hero-quote-card">
+      <div class="quote-header">
+        <div class="stars-gold">★★★★★</div>
+        <h3>Request Rapid Estimate</h3>
+        <p>Direct line to certified master tradesman</p>
+      </div>
+
+      <form id="hero-quick-form" class="quick-form" onsubmit="event.preventDefault(); handleHeroSubmit();">
+        <div class="form-group">
+          <label for="quick-service">Job Needed</label>
+          <select id="quick-service" required>
+            <option value="" disabled selected>Select service...</option>
+            {siteConfig.services.map((s) => (
+              <option value={s.title}>{s.title}</option>
+            ))}
+            <option value="Emergency Callout">Emergency Callout / Urgent Repair</option>
+            <option value="Other Work">Other Domestic / Commercial Work</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="quick-area">Your Dublin Area / Eircode</label>
+          <input type="text" id="quick-area" placeholder="e.g. Castleknock, D15" required />
+        </div>
+
+        <div class="form-group">
+          <label for="quick-phone">Contact Mobile Number</label>
+          <input type="tel" id="quick-phone" placeholder="e.g. 087 123 4567" required />
+        </div>
+
+        <button type="submit" class="btn btn-accent btn-block">
+          <span>Get Instant Price & Availability</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+
+        <p class="form-guarantee">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          No obligation. Upfront fixed price before work starts.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ whatsappNumber: siteConfig.whatsappNumber, businessName: siteConfig.businessName }}>
+  function handleHeroSubmit() {
+    const service = document.getElementById('quick-service').value;
+    const area = document.getElementById('quick-area').value;
+    const phone = document.getElementById('quick-phone').value;
+
+    const message = `Hello ${businessName},\nI would like an estimate for:\n- Job: ${service}\n- Location: ${area}\n- Contact: ${phone}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+<style>
+  .hero-section {
+    position: relative;
+    color: #FFFFFF;
+    padding: 5rem 0 6rem;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(11, 19, 43, 0.95) 0%,
+      rgba(15, 29, 54, 0.9) 45%,
+      rgba(15, 29, 54, 0.6) 100%
+    );
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4.5rem;
+    }
+  }
+
+  .duty-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.5);
+    color: #6EE7B7;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .pulse-green {
+    width: 8px;
+    height: 8px;
+    background: #10B981;
+    border-radius: 50%;
+    animation: pulseG 1.5s infinite;
+  }
+
+  @keyframes pulseG {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  .hero-title {
+    color: #FFFFFF;
+    font-size: 2.35rem;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.25rem;
+    }
+  }
+
+  .hero-desc {
+    color: #CBD5E1;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 620px;
+  }
+
+  .hero-badges-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .hero-badges-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 0.75rem 0.85rem;
+    backdrop-filter: blur(6px);
+  }
+
+  .badge-item svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .badge-item strong {
+    display: block;
+    font-size: 0.8125rem;
+    color: #FFFFFF;
+  }
+
+  .badge-item span {
+    display: block;
+    font-size: 0.75rem;
+    color: #94A3B8;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-call-hero {
+    background: #DC2626;
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 1rem 1.75rem;
+  }
+
+  .btn-call-hero:hover {
+    background: #B91C1C;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+  }
+
+  .btn-whatsapp-hero {
+    background: #25D366;
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 1rem 1.75rem;
+  }
+
+  .btn-whatsapp-hero:hover {
+    background: #20BA5C;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+  }
+
+  .hero-quote-card {
+    background: rgba(15, 29, 54, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    padding: 2.25rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .quote-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .stars-gold {
+    color: #F59E0B;
+    letter-spacing: 2px;
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .quote-header h3 {
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    margin-bottom: 0.25rem;
+  }
+
+  .quote-header p {
+    font-size: 0.8125rem;
+    color: #94A3B8;
+  }
+
+  .quick-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #E2E8F0;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    background: rgba(11, 19, 43, 0.7);
+    color: #FFFFFF;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--color-accent);
+    background: rgba(11, 19, 43, 0.95);
+  }
+
+  .btn-block {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .form-guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+</style>

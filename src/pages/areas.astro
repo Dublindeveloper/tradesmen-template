@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import QuoteEstimator from '../components/QuoteEstimator.astro';
+---
+
+<BaseLayout title={`Electrician Areas Covered Dublin | ${siteConfig.businessName}`}>
+  <div class="page-header">
+    <div class="container">
+      <span class="badge badge-blue">Dublin County Coverage</span>
+      <h1 class="page-title">Service Areas & Locations</h1>
+      <p class="page-lead">
+        Rapid mobile electrician dispatch throughout Dublin 15, North Dublin, West Dublin, and Dublin City Centre.
+      </p>
+    </div>
+  </div>
+
+  <TrustBadges />
+  <ServiceAreas />
+  <QuoteEstimator />
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #0F1D36 0%, #172A4F 100%);
+    color: #FFFFFF;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #FFFFFF;
+    font-size: 2.5rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .page-lead {
+    color: #CBD5E1;
+    font-size: 1.125rem;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+</style>

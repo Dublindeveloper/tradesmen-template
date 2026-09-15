@@ -1,0 +1,167 @@
+---
+import siteConfig from '../../site.config';
+---
+
+<section class="section reviews-section" id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <span class="badge badge-gold">Verified Customer Reviews</span>
+      <h2 class="reviews-title">What Dublin Homeowners & Businesses Say</h2>
+      <div class="rating-overview">
+        <div class="stars">
+          ★★★★★
+        </div>
+        <span class="score-text"><strong>{siteConfig.googleRating.score} out of 5.0</strong> based on {siteConfig.googleRating.totalReviews} Google Reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      {siteConfig.reviews.map((r) => (
+        <div class="review-card card">
+          <div class="review-top">
+            <div class="stars-gold">★★★★★</div>
+            <span class="review-date">{r.date}</span>
+          </div>
+          <p class="review-text">“{r.text}”</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">
+              {r.name.charAt(0)}
+            </div>
+            <div>
+              <strong class="reviewer-name">{r.name}</strong>
+              <span class="reviewer-location">{r.location} • <span class="service-tag">{r.service}</span></span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    background: var(--color-bg-light);
+  }
+
+  .reviews-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .reviews-title {
+    font-size: 2rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .reviews-title {
+      font-size: 2.35rem;
+    }
+  }
+
+  .rating-overview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+  }
+
+  .stars {
+    color: #F59E0B;
+    letter-spacing: 2px;
+    font-size: 1.15rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .reviews-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .review-card {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.75rem;
+    border-radius: 12px;
+  }
+
+  .review-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .stars-gold {
+    color: #F59E0B;
+    letter-spacing: 2px;
+  }
+
+  .review-date {
+    font-size: 0.75rem;
+    color: #94A3B8;
+  }
+
+  .review-text {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #334155;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    font-style: italic;
+  }
+
+  .reviewer-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .reviewer-avatar {
+    width: 38px;
+    height: 38px;
+    background: var(--color-primary);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .reviewer-name {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+
+  .reviewer-location {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .service-tag {
+    color: #0284C7;
+    font-weight: 600;
+  }
+</style>
