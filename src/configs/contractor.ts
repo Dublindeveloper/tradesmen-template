@@ -7,7 +7,7 @@ export const contractorConfig: TradeConfig = {
   heroHeadline: 'Commercial Electrical & Fit-Out Contractors Dublin.',
   heroSubheadline: 'Safe Electric & ISO certified commercial electrical engineering. Office fit-outs, sub-station switchgear, structured data cabling, emergency lighting & annual maintenance contracts across Ireland.',
   heroImage: '/images/hero-contractor.jpg',
-  dutyPillText: 'Commercial On-Duty Engineering Team — Active Across Dublin',
+  dutyPillText: 'Commercial Electrical Engineering — Active Across Dublin',
   ownerName: 'Sean MacNamara',
   yearEstablished: 2008,
   phone: '+35318907777',
@@ -17,14 +17,14 @@ export const contractorConfig: TradeConfig = {
   address: 'Apex House, Ballycoolin Business Park, Dublin 15',
   eircode: 'D15 AP88',
   county: 'Dublin',
-  emergencyAvailable247: true,
-  emergencyResponseTime: 'Priority Commercial Response',
+  emergencyAvailable247: false,
+  emergencyResponseTime: 'Priority Commercial SLAs',
   publicLiabilityInsurance: '€10,000,000 Commercial Liability',
   certifications: [
     'Safe Electric Commercial Contractor',
     'ISO 9001 Quality Management',
     'ISO 45001 Health & Safety Certified',
-    'Certified Structure Cabling Installer'
+    'Certified Structured Cabling Installer'
   ],
   trustBadges: [
     {
